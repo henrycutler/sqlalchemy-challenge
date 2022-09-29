@@ -131,9 +131,8 @@ def start(start):
                                          order_by(measurement.date).all()
     session.close()
 
-  # Create a dictionary from the row data and append to a list of all_tobs
-    # all_tobs = list(filter(None, [row[2] for row in results]))
-    
+  # Create a dictionary from the row data 
+  
     tobs_stats = {}
     tobs_stats['TMIN'] = results[0][0]
     tobs_stats['TMAX'] = results[0][1]
@@ -153,7 +152,7 @@ def start_end(start, end):
     end_date = str(end)
 
     """Return a list of all tobs"""
-    # Query all tobs equal to and after start date
+    # Query all tobs equal to and after start date and less than equal to end date
     results = session.query(func.min(measurement.tobs), 
                                          func.max(measurement.tobs), 
                                          func.avg(measurement.tobs)).\
@@ -162,8 +161,7 @@ def start_end(start, end):
                                          order_by(measurement.date).all()
     session.close()
 
-  # Create a dictionary from the row data and append to a list of all_tobs
-    # all_tobs = list(filter(None, [row[2] for row in results]))
+  # Create a dictionary from the row data 
     
     tobs_stats = {}
     tobs_stats['TMIN'] = results[0][0]
